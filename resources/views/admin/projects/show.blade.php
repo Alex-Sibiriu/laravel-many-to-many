@@ -27,6 +27,13 @@
       @if ($project->type)
         <p class="py-2"><strong>Tipologia: </strong>{{ $project->type->name }}</p>
       @endif
+      @if (count($project->technologies) > 0)
+        <p class="py-2"><strong>Tecnologie utilizzate: </strong>
+          @foreach ($project->technologies as $technology)
+            <span class="badge rounded-pill fs-6 ms-1 text-bg-primary">{{ $technology->name }}</span>
+          @endforeach
+        </p>
+      @endif
       <p class="py-2"><strong>Link: </strong>{{ $project->link }}</p>
       <p class="py-2"><strong>Descrizione: </strong>{{ $project->description }}</p>
     </div>

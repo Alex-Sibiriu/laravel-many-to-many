@@ -57,19 +57,31 @@
     </div>
 
     <div class="col-6 text-center mb-3 pt-3">
-      <img src="{{ asset('storage/' . $project->image) }}" onerror="this.src='{{ asset('img/no-image.png') }}'"
+      <img src="{{ asset('storage/' . $project?->image) }}" onerror="this.src='{{ asset('img/no-image.png') }}'"
         id="thumb-img">
     </div>
 
     <div class="col-6 mb-3">
       <label for="description" class="form-label">Descrizione</label>
       <textarea name="description" class="form-control @error('description') is-invalid @enderror" id="description"
-        rows="10">{{ old('description', $project?->description) }}</textarea>
+        rows="15">{{ old('description', $project?->description) }}</textarea>
       @error('description')
         <small class="text-danger fw-bold">
           {{ $message }}
         </small>
       @enderror
+    </div>
+
+    <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+      @foreach ($technologies as $technology)
+        <input type="checkbox" value="{{ $technology->id }}" name="technologies[]" class="btn-check"
+          id="tech-{{ $technology->id }}" autocomplete="off" @if (
+              ($errors->any() && in_array($technology->id, old('technologies', []))) ||
+                  $project?->technologies->contains($technology)) checked @endif>
+
+        <label class="btn btn-light btn-outline-primary fw-medium"
+          for="tech-{{ $technology->id }}">{{ $technology->name }}</label>
+      @endforeach
     </div>
 
     <div class="text-center pt-3">

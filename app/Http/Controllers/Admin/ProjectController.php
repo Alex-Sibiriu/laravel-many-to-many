@@ -9,6 +9,7 @@ use App\Functions\Helper;
 use App\Http\Requests\ProjectRequest;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Type;
+use App\Models\Technology;
 
 class ProjectController extends Controller
 {
@@ -52,10 +53,11 @@ class ProjectController extends Controller
         $route = route('admin.projects.store');
         $project = null;
         $title = 'Aggiungi un nuovo progetto';
+        $technologies = Technology::all();
 
         $types = Type::all();
 
-        return view('admin.projects.create-edit', compact('method', 'route', 'project', 'title', 'types'));
+        return view('admin.projects.create-edit', compact('method', 'route', 'project', 'title', 'types', 'technologies'));
     }
 
     /**
@@ -77,12 +79,15 @@ class ProjectController extends Controller
         }
 
 
-
         $val_data['slug'] = Helper::createSlug($val_data['title'], Project::class);
         $project = new Project;
         $project->fill($val_data);
 
         $project->save();
+
+        if (array_key_exists('technologies', $val_data)) {
+            $project->technologies()->attach($val_data['technologies']);
+        }
 
         return redirect()->route('admin.projects.show', compact('project'))->with('success', 'Progetto ' . $project->title . ' aggiunto con successo');
     }
@@ -103,10 +108,11 @@ class ProjectController extends Controller
         $method = 'PUT';
         $route = route('admin.projects.update', $project);
         $title = 'Modifica il progetto';
+        $technologies = Technology::all();
 
         $types = Type::all();
 
-        return view('admin.projects.create-edit', compact('project', 'method', 'route', 'title', 'types'));
+        return view('admin.projects.create-edit', compact('project', 'method', 'route', 'title', 'types', 'technologies'));
     }
 
     /**
@@ -132,6 +138,10 @@ class ProjectController extends Controller
         }
 
         $project->update($val_data);
+
+        if (array_key_exists('technologies', $val_data)) {
+            $project->technologies()->sync($val_data['technologies']);
+        }
 
         return redirect()->route('admin.projects.show', $project)->with('success', 'Progetto ' . $project->title . ' modificato con successo');
     }

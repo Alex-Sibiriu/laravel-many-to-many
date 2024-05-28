@@ -41,7 +41,7 @@
                 </a>
 
               </th>
-              <th class="w-25" scope="col">
+              <th scope="col">
                 <a class="text-white text-decoration-none"
                   href="{{ route('admin.projects.index', ['column' => 'title', 'direction' => $direction, 'search_project' => $search_project]) }}">Titolo
 
@@ -60,6 +60,7 @@
 
               </th>
               <th scope="col">Link</th>
+              <th class="text-center" scope="col">Tecnologie</th>
               <th class="text-center" scope="col">
                 <a class="text-white text-decoration-none"
                   href="{{ route('admin.projects.index', ['column' => 'type_id', 'direction' => $direction, 'search_project' => $search_project]) }}">Tipo
@@ -92,6 +93,14 @@
                 </td>
                 <td class="align-content-center">
                   {{ $project->link }}
+                </td>
+
+                <td class="align-content-center text-center">
+                  @forelse ($project->technologies as $technology)
+                    <span class="badge rounded-pill fs-6 ms-1 text-bg-primary">{{ $technology->name }}</span>
+                  @empty
+                    <span class="badge rounded-pill fs-6 text-bg-warning">Nessuna Tecnologia Associata</span>
+                  @endforelse
                 </td>
 
                 <td class="align-content-center text-center">
