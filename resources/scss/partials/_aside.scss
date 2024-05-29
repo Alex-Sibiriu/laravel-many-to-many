@@ -2,7 +2,6 @@ aside {
     width: 210px;
     height: 100%;
     flex-shrink: 0;
-    border-top: 1px solid grey;
     padding: 10px;
     li {
         padding: 0 10px;
@@ -13,9 +12,10 @@ aside {
             color: white;
             text-decoration: none;
             transition: all .3s;
+            width: 100%;
         }
         &:hover {
-            background-color: rgba(255, 255, 255, 0.3);
+            background-color: rgba(254, 254, 254, 0.2);
             a {
                 color: $primary;
                 font-weight: bold;

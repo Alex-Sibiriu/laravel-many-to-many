@@ -42,3 +42,12 @@ main {
 .id-column {
     width: 80px;
 }
+
+.circle-form {
+    line-height: 80px;
+    height: 80px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    text-align: center;
+    font-weight: bold;
+}

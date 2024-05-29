@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Models\Technology;
+use App\Models\Type;
 
 class DashboardController extends Controller
 {
@@ -16,6 +17,14 @@ class DashboardController extends Controller
         $updated_project = Project::orderByDesc('updated_at')->first();
         $count_technologies = Technology::count();
 
-        return view('admin.home', compact('count_project', 'last_project', 'updated_project', 'count_technologies'));
+        $typeCount = Type::withCount('projects')
+            ->orderBy('projects_count', 'desc')
+            ->get();
+
+        $techCount = Technology::withCount('projects')
+            ->orderBy('projects_count', 'desc')
+            ->get();
+
+        return view('admin.home', compact('count_project', 'last_project', 'updated_project', 'count_technologies', 'typeCount', 'techCount'));
     }
 }

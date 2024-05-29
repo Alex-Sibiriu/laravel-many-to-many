@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Technology;
 use App\Models\Type;
+use App\Models\Project;
 use App\Functions\Helper;
 use App\Http\Requests\TechnologyRequest;
 
@@ -55,9 +56,12 @@ class TechnologyController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Technology $technology)
     {
-        //
+        $projects = $technology->projects;
+        $num_projects = count($projects);
+
+        return view('admin.technologies.show', compact('projects', 'num_projects', 'technology'));
     }
 
     /**

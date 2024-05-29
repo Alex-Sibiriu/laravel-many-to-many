@@ -3,7 +3,7 @@
 @section('content')
   <h1 class="py-5 text-white text-center mt-3 rounded-3 bg-gray">{{ $title }}</h1>
 
-  <form class="row text-white rounded-3 bg-gray p-5" enctype="multipart/form-data" action='{{ $route }}'
+  <form class="row text-white fw-medium rounded-3 bg-gray p-5" enctype="multipart/form-data" action='{{ $route }}'
     method='POST'>
     @csrf
     @method($method)
@@ -73,15 +73,18 @@
     </div>
 
     <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-      @foreach ($technologies as $technology)
-        <input type="checkbox" value="{{ $technology->id }}" name="technologies[]" class="btn-check"
-          id="tech-{{ $technology->id }}" autocomplete="off" @if (
-              ($errors->any() && in_array($technology->id, old('technologies', []))) ||
-                  $project?->technologies->contains($technology)) checked @endif>
+      <p class="pe-2">Seleziona le tecnologie:</p>
+      <div>
+        @foreach ($technologies as $technology)
+          <input type="checkbox" value="{{ $technology->id }}" name="technologies[]" class="btn-check"
+            id="tech-{{ $technology->id }}" autocomplete="off" @if (
+                ($errors->any() && in_array($technology->id, old('technologies', []))) ||
+                    $project?->technologies->contains($technology)) checked @endif>
 
-        <label class="btn btn-light btn-outline-primary fw-medium"
-          for="tech-{{ $technology->id }}">{{ $technology->name }}</label>
-      @endforeach
+          <label class="btn btn-light btn-outline-primary fw-medium me-2"
+            for="tech-{{ $technology->id }}">{{ $technology->name }}</label>
+        @endforeach
+      </div>
     </div>
 
     <div class="text-center pt-3">

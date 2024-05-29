@@ -1,5 +1,11 @@
-<aside class="bg-black text-white">
+<aside class="bg-black text-white border-end border-secondary">
   <ul class="list-unstyled">
+
+    <li>
+      <a href="{{ route('admin.home') }}">
+        <i class="fa-solid fa-house me-2"></i></i>Home
+      </a>
+    </li>
 
     <li>
       <a href="{{ route('admin.projects.index') }}">

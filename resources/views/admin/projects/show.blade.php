@@ -25,7 +25,11 @@
     <div class="ps-5 w-50">
       <p class="py-2"><strong>Titolo: </strong>{{ $project->title }}</p>
       @if ($project->type)
-        <p class="py-2"><strong>Tipologia: </strong>{{ $project->type->name }}</p>
+        <p class="py-2"><strong>Tipologia: </strong>
+          <span class="badge text-bg-success text-decoration-none fs-6 ms-1">
+            {{ $project->type->name }}
+          </span>
+        </p>
       @endif
       @if (count($project->technologies) > 0)
         <p class="py-2"><strong>Tecnologie utilizzate: </strong>

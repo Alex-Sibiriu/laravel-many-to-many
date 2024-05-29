@@ -50,9 +50,12 @@ class TypeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Type $type)
     {
-        //
+        $projects = $type->projects;
+        $num_projects = count($projects);
+
+        return view('admin.types.show', compact('projects', 'num_projects', 'type'));
     }
 
     /**

@@ -1,4 +1,4 @@
-<header class="bg-black pe-5">
+<header class="bg-black pe-5 border-bottom border-secondary">
   <nav class="navbar navbar-expand-lg p-0">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
       aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -13,9 +13,6 @@
           <a class="nav-link text-white py-3 fw-medium fs-5" aria-current="page" href="{{ route('home') }}"
             target="_blanck">Sito
             Pubblico</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white py-3 fw-medium fs-5" href="{{ route('admin.home') }}">Dashboard Privata</a>
         </li>
       </ul>
 

@@ -41,7 +41,9 @@ class ProjectController extends Controller
             $search_project = '';
         }
 
-        return view('admin.projects.index', compact('projects', 'num_projects', 'search_project', 'direction', 'column'));
+        $pagination = true;
+
+        return view('admin.projects.index', compact('projects', 'num_projects', 'search_project', 'direction', 'column', 'pagination'));
     }
 
     /**
@@ -142,7 +144,7 @@ class ProjectController extends Controller
         if (array_key_exists('technologies', $val_data)) {
             $project->technologies()->sync($val_data['technologies']);
         } else {
-            $project->technologies()->detach();
+            $project->technologies->detach();
         }
 
         return redirect()->route('admin.projects.show', $project)->with('success', 'Progetto ' . $project->title . ' modificato con successo');

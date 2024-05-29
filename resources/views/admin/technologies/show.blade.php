@@ -15,69 +15,17 @@
       <div class="px-2 bg-dark rounded-3 pb-1">
         <h2 class="py-3 text-white rounded-3 fw-bold fs-2 p-3 mt-3">Progetti Trovati: <span
             class="text-primary">{{ $num_projects }}</span></h2>
-        @if ($search_project)
-          <p class="fs-4 ps-3 text-white"><strong>Parametro di ricerca: </strong><span
-              class="text-primary">{{ $search_project }}</span></p>
-        @endif
+        <p class="fs-4 ps-3 text-white"><strong>Parametro di ricerca: </strong><span
+            class="badge rounded-pill fs-6 ms-1 text-bg-primary">{{ $technology->name }}</span></p>
 
         <table class="table table-dark table-striped">
           <thead>
             <tr>
-              <th class="ps-3 id-column" scope="col">
-                <a class="text-white text-decoration-none"
-                  href="{{ route('admin.projects.index', ['column' => 'id', 'direction' => $direction, 'search_project' => $search_project]) }}">ID
-                  @if (isset($column) && $column === 'id')
-                    <span class="ps-1 text-primary">
-                      @if ($direction === 'DESC')
-                        <i class="fa-solid fa-down-long"></i>
-                      @else
-                        <i class="fa-solid fa-up-long"></i>
-                      @endif
-                    </span>
-                  @else
-                    <i class="fa-solid fa-arrows-up-down"></i>
-                  @endif
-                </a>
-
-              </th>
-              <th scope="col">
-                <a class="text-white text-decoration-none"
-                  href="{{ route('admin.projects.index', ['column' => 'title', 'direction' => $direction, 'search_project' => $search_project]) }}">Titolo
-
-                  @if (isset($column) && $column === 'title')
-                    <span class="ps-1 text-primary">
-                      @if ($direction === 'DESC')
-                        <i class="fa-solid fa-down-long"></i>
-                      @else
-                        <i class="fa-solid fa-up-long"></i>
-                      @endif
-                    </span>
-                  @else
-                    <i class="fa-solid fa-arrows-up-down"></i>
-                  @endif
-                </a>
-
-              </th>
+              <th class="ps-3 id-column" scope="col">ID</th>
+              <th scope="col">Titolo</th>
               <th scope="col">Link</th>
               <th class="text-center" scope="col">Tecnologie</th>
-              <th class="text-center" scope="col">
-                <a class="text-white text-decoration-none"
-                  href="{{ route('admin.projects.index', ['column' => 'type_id', 'direction' => $direction, 'search_project' => $search_project]) }}">Tipo
-
-                  @if (isset($column) && $column === 'type_id')
-                    <span class="ps-1 text-primary">
-                      @if ($direction === 'DESC')
-                        <i class="fa-solid fa-down-long"></i>
-                      @else
-                        <i class="fa-solid fa-up-long"></i>
-                      @endif
-                    </span>
-                  @else
-                    <i class="fa-solid fa-arrows-up-down"></i>
-                  @endif
-                </a>
-
-              </th>
+              <th class="text-center" scope="col">Tipo</th>
               <th class="text-center" scope="col">Azioni</th>
             </tr>
           </thead>
@@ -141,7 +89,6 @@
 
           </tbody>
         </table>
-        {{ $projects->links() }}
       </div>
     </div>
   </div>

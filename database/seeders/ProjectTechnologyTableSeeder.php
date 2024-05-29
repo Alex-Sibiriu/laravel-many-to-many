@@ -19,7 +19,9 @@ class ProjectTechnologyTableSeeder extends Seeder
 
             $technology_id = Technology::inRandomOrder()->first()->id;
 
-            $project->technologies()->attach($technology_id);
+            if (!$project->technologies()->where('technology_id', $technology_id)->exists()) {
+                $project->technologies()->attach($technology_id);
+            }
         }
     }
 }

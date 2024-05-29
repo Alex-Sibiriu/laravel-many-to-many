@@ -27,7 +27,7 @@
       @endif
     </div>
 
-    <div class="col-4">
+    <div class="col-6">
       <div>
         <div class="rounded-3 bg-dark text-white px-3 pb-3">
           <h2 class="py-3 text-white text-center rounded-3 fw-bold fs-2 p-3 mt-3">Aggiungi una nuova tecnologia</h2>
@@ -97,7 +97,7 @@
       </div>
     </div>
 
-    <div class="col-4">
+    <div class="col-6">
       <div>
         <div class="rounded-3 bg-dark text-white px-3 pb-3">
           <h2 class="py-3 text-white text-center rounded-3 fw-bold fs-2 p-3 mt-3">Aggiungi una nuovo tipo</h2>
